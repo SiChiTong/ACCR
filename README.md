@@ -18,6 +18,7 @@ Install necessary dependency packages (some of them may not be required now):
 ## 3. catkin_make
 As long as the package is under some child directory of src, catkin can detect it automatically. Next step is then to build the system.
 
+    $ source /opt/ros/noetic/setup.bash
     $ cd <yourpath>/UoM_BT_Robot
     $ catkin_make
 
