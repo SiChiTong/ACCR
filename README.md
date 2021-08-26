@@ -21,7 +21,19 @@ As long as the package is under some child directory of src, catkin can detect i
     $ cd $<yourpath>/UoM_BT_Robot
     $ catkin_make
 
-## 4.
-    
+## 4. Save the test site to the simulation (no longer needs)
 
+    $ cd <yourworkspace>
+    $ source devel/setup.bash
+    $ roslaunch test_site_gazebo gazebo.launch
+    
+Once the Gazebo is running, on your left hand, find and click `<Models>` - `<test_site_gazebo>`. At bottom, click `<pose>`, change `<x>`,`<y>`,`<z>`,`<pitch>`,`<yaw>` to 0. But keep `<roll>` value as whatever it is. After you complete these steps, save the world to 
+The Gazebo should be opened then.  Then choose "pose" below. Change "x,y,z,pitch,yaw"values to 0, BUT KEEP ROLL VALUE as whatever it is. After you done all of this, save the world to
+
+    $ <yourpath>/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
+    
+## 5. Register your Path and shell
+
+    $ cd <yourpath>/Mbot/src/mbot_gazebo/mbot/mbot_description/scripts/
+    $ sudo chmod +x demo_path.py
 
