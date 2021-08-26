@@ -1,6 +1,6 @@
 # UoM_BT_Robot
 
-This project is developed based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** and **[ROS Noetic](http://wiki.ros.org/noetic**.
+This project is developed based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** and **[ROS Noetic](http://wiki.ros.org/noetic)**.
 
 # Instructions:
 ## 1. ROS Installation:
