@@ -16,8 +16,8 @@ from tf import transformations
 
 
 # parameters
-tolerence_position = 0.3
-tolerence_orientation = 0.1
+tolerence_position = 0.4
+tolerence_orientation = 0.05
 
 # publishers
 pub = None
@@ -36,10 +36,10 @@ class Controller:
         [4.9, -2.0, 1.57, 1], \
         [4.9, 2.0, 1.57, 0], \
         [4.9, 2.0, 0.0, 1], \
-        [6.5, 2.0, 0.0, 0], \
-        [6.5, 2.0, -1.57, 1], \
-        [6.5, -2.0, -1.57, 0], \
-        [6.5, -2.0, 3.14, 1], \
+        [6.6, 2.0, 0.0, 0], \
+        [6.6, 2.0, -1.57, 1], \
+        [6.6, -2.0, -1.57, 0], \
+        [6.6, -2.0, 3.14, 1], \
         [1.0, -3.0, 3.14, 0], \
         ]
     
@@ -178,13 +178,9 @@ class Controller:
             s = 0
             for waypoint in waypointList:
                 x, y, yaw, orientation_check= waypoint
-                var=rospy.wait_for_message('/odom',Odometry,timeout=5)
                 now = rospy.get_rostime()
                 # publish the waypoint
-                if orientation_check == 0:
-                    moveResult = self.goal_set(x, y, yaw)
-                else:
-                    moveResult = self.goal_set(var.pose.pose.position.x, var.pose.pose.position.y, yaw)
+                moveResult = self.goal_set(x, y, yaw)
 
                 #print('[%i.%i] Waypoint: %f X %f Y %f yaw' % \
                 #  (now.secs, now.nsecs, x, y, yaw))
@@ -200,8 +196,8 @@ class Controller:
                     # current_pose = rospy.Subscriber('/odom', Odometry, self.clbk_odom)
                     var=rospy.wait_for_message('/odom',Odometry,timeout=5)
                     compare_result = self.compare(waypoint, var, orientation_check)
-                    #print('[%i.%i] Waypoint: %f X %f Y %f yaw' % \
-                    #  (now.secs, now.nsecs, x, y, yaw))
+                    print('[%i.%i] Waypoint: %f X %f Y %f yaw' % \
+                      (now.secs, now.nsecs, x, y, yaw))
                     rospy.loginfo("state_result: " + str(s) + "  Waypoint: " + str(waypoint))
                     # print('Not finish yet')
                     rate.sleep()
