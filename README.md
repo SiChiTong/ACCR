@@ -18,22 +18,29 @@ Install necessary dependency packages (some of them may not be required now):
 ## 3. catkin_make
 As long as the package is under some child directory of src, catkin can detect it automatically. Next step is then to build the system.
 
-    $ cd $<yourpath>/UoM_BT_Robot
+    $ cd <yourpath>/UoM_BT_Robot
     $ catkin_make
 
 ## 4. Save the test site to the simulation (no longer needs)
 
-    $ cd <yourworkspace>
+    $ cd <yourpath>/UoM_BT_Robot
     $ source devel/setup.bash
     $ roslaunch test_site_gazebo gazebo.launch
     
 Once the Gazebo is running, on your left hand, find and click `<Models>` - `<test_site_gazebo>`. At bottom, click `<pose>`, change `<x>`,`<y>`,`<z>`,`<pitch>`,`<yaw>` to 0. But keep `<roll>` value as whatever it is. After you complete these steps, save the world to 
 The Gazebo should be opened then.  Then choose "pose" below. Change "x,y,z,pitch,yaw"values to 0, BUT KEEP ROLL VALUE as whatever it is. After you done all of this, save the world to
 
-    $ <yourpath>/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
+    $ <yourpath>/UoM_BT_Robot/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
     
 ## 5. Register your Path and shell
-
-    $ cd <yourpath>/Mbot/src/mbot_gazebo/mbot/mbot_description/scripts/
+    
+    $ cd <yourpath>/UoM_BT_Robot
+    $ sudo chmod +x RUN.sh
+    $ cd <yourpath>/UoM_BT_Robot/src/mbot_gazebo/mbot/mbot_description/scripts/
     $ sudo chmod +x demo_path.py
+    
+## 6. Test your project
+
+    $ cd <yourpath>/UoM_BT_Robot
+    $ ./RUN.sh
 
