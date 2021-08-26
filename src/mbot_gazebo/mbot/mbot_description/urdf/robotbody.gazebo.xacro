@@ -13,7 +13,7 @@
 	<mu2>10000000</mu2>
 	<kp>10000000</kp>
 	<kd>1</kd>
-	<max_vel>0.5</max_vel>
+	<max_vel>0.7</max_vel>
  	
   </gazebo>  
   <gazebo reference="Left_Wheel">  
@@ -22,7 +22,7 @@
 	<mu2>10000000</mu2>
 	<kp>10000000</kp>
 	<kd>1</kd>
-	<max_vel>0.5</max_vel>
+	<max_vel>0.7</max_vel>
  	
   </gazebo>  
   <gazebo reference="Bucket"> 
@@ -91,12 +91,12 @@
         <range>
           <min>0.2</min>
           <max>12</max>
-          <resolution>0.005</resolution>
+          <resolution>0.015</resolution>
         </range>
         <noise>
-         <!-- <type>gaussian</type>
+          <type>gaussian</type>
           <mean>0.0</mean>
-          <stddev>0.00</stddev> -->
+          <stddev>0.01</stddev>
         </noise>
       </ray>
       <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
@@ -128,8 +128,8 @@
           <accel>
             <mean>0.0</mean>
             <stddev>1.7e-2</stddev>
-            <bias_mean>0.001</bias_mean>
-            <bias_stddev>0.00001</bias_stddev>
+            <bias_mean>0.1</bias_mean>
+            <bias_stddev>0.001</bias_stddev>
           </accel>
         </noise>
       </imu>
@@ -142,23 +142,23 @@
   <gazebo reference="Right_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
         <mu1>0</mu1>
-	<mu2>0</mu2>  
+	<mu2>1</mu2>  
   </gazebo> 
   <gazebo reference="Right_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
         <mu1>0</mu1>
-	<mu2>0</mu2>  
+	<mu2>1</mu2>  
   </gazebo> 
   <gazebo reference="Left_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
         <mu1>0</mu1>
-	<mu2>0</mu2>
+	<mu2>1</mu2>
 	   
   </gazebo>  
   <gazebo reference="Left_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
         <mu1>0</mu1>
-	<mu2>0</mu2> 
+	<mu2>1</mu2> 
 	 
   </gazebo>  
     
@@ -167,9 +167,9 @@
     <updateRate>100.0</updateRate>
     <leftJoint>Joint_Wheel_Left</leftJoint>
     <rightJoint>Joint_Wheel_Right</rightJoint>
-    <wheelSeparation>0.4898</wheelSeparation>
+    <wheelSeparation>0.45</wheelSeparation>
     <wheelDiameter>0.16</wheelDiameter>
-    <wheelAcceleration>1.5</wheelAcceleration>
+    <wheelAcceleration>2.0</wheelAcceleration>
     <wheelTorque>7</wheelTorque>
     <commandTopic>cmd_vel</commandTopic>
     <odometryTopic>odom</odometryTopic>
