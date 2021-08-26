@@ -8,6 +8,7 @@ ROS installation instructions can be found [here](http://wiki.ros.org/noetic/Ins
 
 ## 2. Packages Installation:
 Install necessary dependency packages (some of them may not be required now):
+
     $ source /opt/ros/noetic/setup.bash
     $ sudo apt-get install -y ros-noetic-joy ros-noetic-teleop-twist-joy ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc ros-noetic-rgbd-launch ros-noetic-depthimage-to-laserscan ros-noetic-rosserial-arduino ros-noetic-rosserial-python ros-noetic-rosserial-server ros-noetic-rosserial-client ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro  ros-noetic-compressed-image-transport ros-noetic-rqt-image-view ros-noetic-gmapping ros-noetic-interactive-markers ros-noetic-arbotix ros-noetic-geometry2 ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-position-controllers ros-noetic-ddynamic-reconfigure ros-$ROS_DISTRO-realsense2-camera python3-catkin-pkg
     $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
@@ -16,6 +17,7 @@ Install necessary dependency packages (some of them may not be required now):
 
 ## 3. catkin_make
 As long as the package is under some child directory of src, catkin can detect it automatically. Next step is then to build the system.
+
     $ cd $<yourpath>/UoM_BT_Robot
     $ catkin_make
 
