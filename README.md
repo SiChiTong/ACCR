@@ -3,7 +3,7 @@
 This project is developed by Human Robotics Lab at the University of Melbourne based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** (Kernel Version: 5.11.0-27-generic) and **[ROS Noetic](http://wiki.ros.org/noetic)**.
 
 # Instructions:
-## 1. ROS Installation:
+## 1. ROS Installation
 ROS installation instructions can be found [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend the *ros-noetic-desktop-full*. 
 
 *_**NOTE:**_* As ROS has revoked the old GPG key, you may meet the following error during the ROS installation:
@@ -39,7 +39,7 @@ If you want to **remove** this global setting from your device, simply go to `Ho
 
     source /opt/ros/noetic/setup.bash
 
-## 2. Packages Installation:
+## 2. Packages Installation
 Install necessary dependency packages (some of them may be no longer required):
 
     $ source /opt/ros/noetic/setup.bash
@@ -55,7 +55,7 @@ As long as the package is under some child directory of src, catkin can detect i
     $ cd <yourpath>/UoM_BT_Robot
     $ catkin_make
 
-## 4. Save the test site to the simulation (no longer needs)
+## 4. Save the test site to the simulation
 
     $ cd <yourpath>/UoM_BT_Robot
     $ source devel/setup.bash
