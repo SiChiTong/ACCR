@@ -14,7 +14,7 @@ or,
 
     W: GPG error: http://packages.ros.org <YOUR_UBUNTU_VERSION> InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5523BAEEB01FA116
     
-To resolve this, you need to run the following code to remove old key:
+To resolve this, you need to run the following code to remove the old key:
     
     $ sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
     
@@ -33,14 +33,14 @@ In this case, in the following steps, you can always **ignore** the following co
 
     $ source /opt/ros/noetic/setup.bash
 
-This makes your life easier, as you don't need to include this line everytime when you use catkin to make your new files (some major changes may require you re-make the whole project).
+This makes your life easier, as you don't need to include this line every time when you use catkin to make your new files (some major changes may require you re-make the whole project).
 
-If you want to **remove** this global setting from your device, simply go to `Home`, and then press `Ctrl` + `H` to show all hidden files, then open `.bashrc` file and delete the following line:
+If you want to **remove** this global setting from your device, simply go to `Home`, and then press `Ctrl` + `H` to show all hidden files, then open the `.bashrc` file and delete the following line:
 
     source /opt/ros/noetic/setup.bash
 
 ## 2. Packages Installation:
-Install necessary dependency packages (some of them may not be required now):
+Install necessary dependency packages (some of them may be no longer required):
 
     $ source /opt/ros/noetic/setup.bash
     $ sudo apt-get install -y ros-noetic-joy ros-noetic-teleop-twist-joy ros-noetic-teleop-twist-keyboard ros-noetic-laser-proc ros-noetic-rgbd-launch ros-noetic-depthimage-to-laserscan ros-noetic-rosserial-arduino ros-noetic-rosserial-python ros-noetic-rosserial-server ros-noetic-rosserial-client ros-noetic-rosserial-msgs ros-noetic-amcl ros-noetic-map-server ros-noetic-move-base ros-noetic-urdf ros-noetic-xacro  ros-noetic-compressed-image-transport ros-noetic-rqt-image-view ros-noetic-gmapping ros-noetic-interactive-markers ros-noetic-arbotix ros-noetic-geometry2 ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-position-controllers ros-noetic-ddynamic-reconfigure ros-$ROS_DISTRO-realsense2-camera python3-catkin-pkg
@@ -49,7 +49,7 @@ Install necessary dependency packages (some of them may not be required now):
     $ sudo apt update && sudo apt upgrade
 
 ## 3. catkin_make
-As long as the package is under some child directory of src, catkin can detect it automatically. Next step is then to build the system.
+As long as the package is under some child directory of src, catkin can detect it automatically. The next step is then to build the system.
 
     $ source /opt/ros/noetic/setup.bash
     $ cd <yourpath>/UoM_BT_Robot
@@ -61,7 +61,7 @@ As long as the package is under some child directory of src, catkin can detect i
     $ source devel/setup.bash
     $ roslaunch test_site_gazebo gazebo.launch
     
-Once the Gazebo is running, on your left hand, find and click `<Models>` - `<test_site_gazebo>`. At bottom, click `<pose>`, change `<x>`,`<y>`,`<z>`,`<pitch>`,`<yaw>` to 0. But keep `<roll>` value as whatever it is. After you complete these steps, save the world to 
+Once the Gazebo is running, on your left hand, find and click `<Models>` - `<test_site_gazebo>`. At the bottom, click `<pose>`, change `<x>`,`<y>`,`<z>`,`<pitch>`,`<yaw>` to 0. But keep `<roll>` value as whatever it is. After you complete these steps, save the world to 
 
     $ <yourpath>/UoM_BT_Robot/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
     
@@ -79,17 +79,17 @@ Once the Gazebo is running, on your left hand, find and click `<Models>` - `<tes
 
 
 # TODO
-At this beginning level, we still have a lot of works need to be done. Here are some short-term goals:
+At this beginning level, we still have a lot of works that need to be done. Here are some short-term goals:
 
 ## *Code structure:*
-* Isolate ROS controller from simulations, and allow users to choose run both (to test in simulation) or the ROS controller only (to test on robot).
+* Isolate ROS controller from simulations, and allow users to choose to run both (to test in simulation) or the ROS controller only (to test on the robot).
 * Create a simple decision layer to allow it to decide when to lift up or drop down the bucket (will add more features later: *e.g.* switch the navigation algorithms between lidar-base and vision-base).
 
 ## *Simulation:*
-* Rebuild the map, and set the corner to origin, which makes all coordinates in the map to be positive number.
+* Rebuild the map, and set the corner to the origin, which makes all coordinates in the map be positive numbers.
 * Rewrite the robot description files to resolve some issues:
-    * Enable the bucket joint and allow it to be lifted up or dropped down in simulation environment. Currently, it is down to the bottom and potentially caused a huge friction.
-    * Modify the robot model, as it has only two wheels in the simulation, which made it has a pitch angle change. This pitch angle change may also cause a huge friction when the acceleration changed (especially when slowing down).
+    * Enable the bucket joint and allow it to be lifted up or dropped down in the simulation environment. Currently, it is down to the bottom and potentially caused huge friction.
+    * Modify the robot model, as it has only two wheels in the simulation, which made it has a pitch angle change. This pitch angle change may also cause huge friction when the acceleration changed (especially when slowing down).
 * Potentially change or modify the *diff_robot_controller* to make it closer to the algorithms used in our real robot.
 
 ## *ROS controller*
