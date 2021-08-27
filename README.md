@@ -79,8 +79,21 @@ Once the Gazebo is running, on your left hand, find and click `<Models>` - `<tes
 
 
 # TODO
-At this beginning level, we still have a lot of works need to be done. Here are some short-term goals: 
-* The current version mixed up the simulation and the algorithms, will update a new version later
-* All algorithms need further improvement
-* The physical model has some setup problem in the simulation 
+At this beginning level, we still have a lot of works need to be done. Here are some short-term goals:
+
+## *Code structure:*
+* Isolate ROS controller from simulations, and allow users to choose run both (to test in simulation) or the ROS controller only (to test on robot).
+* Create a simple decision layer to allow it to decide when to lift up or drop down the bucket (will add more features later: *e.g.* switch the navigation algorithms between lidar-base and vision-base).
+
+## *Simulation:*
+* Rebuild the map, and set the corner to origin, which makes all coordinates in the map to be positive number.
+* Rewrite the robot description files to resolve some issues:
+    * Enable the bucket joint and allow it to be lifted up or dropped down in simulation environment. Currently, it is down to the bottom and potentially caused a huge friction.
+    * Modify the robot model, as it has only two wheels in the simulation, which made it has a pitch angle change. This pitch angle change may also cause a huge friction when the acceleration changed (especially when slowing down).
+* Potentially change or modify the *diff_robot_controller* to make it closer to the algorithms used in our real robot.
+
+## *ROS controller*
+* Clean up the algorithms used in the current project and remove or mark the irrelevant or unused packages.
+* More features will come later.
+
 
