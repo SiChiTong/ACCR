@@ -1,6 +1,6 @@
-# UoM_BT_Robot
+# Automatic Conveyor Cleaning Robot (ACCR)
 
-This project is developed based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** (Kernel Version: 5.11.0-27-generic) and **[ROS Noetic](http://wiki.ros.org/noetic)**.
+This project is developed by Human Robotics Lab at the University of Melbourne based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** (Kernel Version: 5.11.0-27-generic) and **[ROS Noetic](http://wiki.ros.org/noetic)**.
 
 # Instructions:
 ## 1. ROS Installation:
@@ -46,6 +46,7 @@ Once the Gazebo is running, on your left hand, find and click `<Models>` - `<tes
 
 
 # TODO
+At this beginning level, we still have a lot of works needs to be done. Here are some short-term goal: 
 * The current version mixed up the simulation and the algorithms, will update a new version later
 * All algorithms need further improvement
 * The physical model has some setup problem in the simulation 
