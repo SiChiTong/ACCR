@@ -4,7 +4,27 @@ This project is developed by Human Robotics Lab at the University of Melbourne b
 
 # Instructions:
 ## 1. ROS Installation:
-ROS installation instructions can be found [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend the *ros-noetic-desktop-full*.
+ROS installation instructions can be found [here](http://wiki.ros.org/noetic/Installation/Ubuntu). We recommend the *ros-noetic-desktop-full*. 
+
+*_**NOTE:**_* As ROS has revoked the old GPG key, you may meet the following error during the ROS installation:
+
+    Err:1 http://packages.ros.org/ros/ubuntu <YOUR_UBUNTU_VERSION>/main amd64 <SOME_ROS_PKG> amd64 0.13.3-0xenial-20190320-132757-0800
+    
+or,
+
+    W: GPG error: http://packages.ros.org <YOUR_UBUNTU_VERSION> InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 5523BAEEB01FA116
+    
+To resolve this, you need to run the following code to remove old key:
+    
+    $ sudo apt-key del 421C365BD9FF1F717815A3895523BAEEB01FA116
+    
+And then, import the new key:
+
+    $ sudo -E apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+    
+At this point, make sure to run `$ sudo apt clean && sudo apt update`. You should receive no errors and subsequent `$ sudo apt install` commands should also now work.
+
+
 
 ## 2. Packages Installation:
 Install necessary dependency packages (some of them may not be required now):
@@ -46,7 +66,7 @@ Once the Gazebo is running, on your left hand, find and click `<Models>` - `<tes
 
 
 # TODO
-At this beginning level, we still have a lot of works needs to be done. Here are some short-term goal: 
+At this beginning level, we still have a lot of works need to be done. Here are some short-term goals: 
 * The current version mixed up the simulation and the algorithms, will update a new version later
 * All algorithms need further improvement
 * The physical model has some setup problem in the simulation 
