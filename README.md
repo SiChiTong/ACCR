@@ -24,7 +24,20 @@ And then, import the new key:
     
 At this point, make sure to run `$ sudo apt clean && sudo apt update`. You should receive no errors and subsequent `$ sudo apt install` commands should also now work.
 
+## *Optional* (Recommanded)
+You can use the following code to make your ROS environment working **globally**.
 
+    $ echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+
+In this case, in the following steps, you can always **ignore** the following code.
+
+    $ source /opt/ros/noetic/setup.bash
+
+This makes your life easier, as you don't need to include this line everytime when you use catkin to make your new files (some major changes may require you re-make the whole project).
+
+If you want to **remove** this global setting from your device, simply go to `Home`, and then press `Ctrl` + `H` to show all hidden files, then open `.bashrc` file and delete the following line:
+
+    source /opt/ros/noetic/setup.bash
 
 ## 2. Packages Installation:
 Install necessary dependency packages (some of them may not be required now):
