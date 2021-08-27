@@ -83,7 +83,6 @@ At this beginning level, we still have a lot of works that need to be done. Here
 
 ## *Code structure:*
 * Isolate ROS controller from simulations, and allow users to choose to run both (to test in simulation) or the ROS controller only (to test on the robot).
-* Create a simple decision layer to allow it to decide when to lift up or drop down the bucket (will add more features later: *e.g.* switch the navigation algorithms between lidar-base and vision-base).
 
 ## *Simulation:*
 * Rebuild the map, and set the corner to the origin, which makes all coordinates in the map be positive numbers.
@@ -94,6 +93,7 @@ At this beginning level, we still have a lot of works that need to be done. Here
 
 ## *ROS controller*
 * Clean up the algorithms used in the current project and remove or mark the irrelevant or unused packages.
+* Create a simple decision layer to allow it to decide when to lift up or drop down the bucket (will add more features later: *e.g.* switch the navigation algorithms between lidar-base and vision-base).
 * More features will come later.
 
 
