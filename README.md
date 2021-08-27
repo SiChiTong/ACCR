@@ -1,6 +1,6 @@
 # Automatic Conveyor Cleaning Robot (ACCR)
 
-This project is developed by Human Robotics Lab at the University of Melbourne based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** (Kernel Version: 5.11.0-27-generic) and **[ROS Noetic](http://wiki.ros.org/noetic)**.
+This project is developed by Human Robotics Lab at the University of Melbourne based on **[Ubuntu 20.04 Focal Fossa](https://releases.ubuntu.com/20.04/)** (Kernel Version: 5.11.0-27-generic) and **[ROS Noetic](http://wiki.ros.org/noetic)**. If you have any questions, feel free to contact me via [email](Murphy.xu@unimelb.edu.au)
 
 # Instructions:
 ## 1. ROS Installation
