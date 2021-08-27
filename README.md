@@ -33,7 +33,7 @@ In this case, in the following steps, you can always **ignore** the following co
 
     $ source /opt/ros/noetic/setup.bash
 
-This makes your life easier, as you don't need to include this line every time when you use catkin to make your new files (some major changes may require you re-make the whole project).
+This makes your life easier, as you don't need to include this line every time when you use a ROS command in a new terminal.
 
 If you want to **remove** this global setting from your device, simply go to `Home`, and then press `Ctrl` + `H` to show all hidden files, then open the `.bashrc` file and delete the following line:
 
