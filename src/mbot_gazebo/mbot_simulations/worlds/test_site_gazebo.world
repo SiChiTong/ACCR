@@ -106,7 +106,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/murphy/Mbot/src/test_site_gazebo/meshes/base_link.STL</uri>
+              <uri>/home/murphy/Projects/Baotong/ACCR/src/test_site_gazebo/meshes/base_link.STL</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -128,7 +128,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/murphy/Mbot/src/test_site_gazebo/meshes/base_link.STL</uri>
+              <uri>/home/murphy/Projects/Baotong/ACCR/src/test_site_gazebo/meshes/base_link.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -139,10 +139,10 @@
       <pose>0 0 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>156 655000000</sim_time>
-      <real_time>156 778116547</real_time>
-      <wall_time>1629777327 205097056</wall_time>
-      <iterations>156655</iterations>
+      <sim_time>69 619000000</sim_time>
+      <real_time>69 702008622</real_time>
+      <wall_time>1630373190 511940173</wall_time>
+      <iterations>69619</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -169,7 +169,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>13.6244 -8.314 3.12179 0 0.275643 2.35619</pose>
+        <pose>10.2595 0.496466 4.90686 0 0.487643 -3.107</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

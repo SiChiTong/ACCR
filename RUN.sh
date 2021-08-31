@@ -9,7 +9,7 @@ then
 	gnome-terminal -- bash -c "source /opt/ros/noetic/setup.bash; source devel/setup.bash; rostopic echo cmd_vel;exec bash"
 	source /opt/ros/noetic/setup.bash
 	source devel/setup.bash 
-	defined_PATH=~/UoM_BT_Robot/src/mbot_gazebo/mbot/mbot_description/scripts/
+	defined_PATH=./src/mbot_gazebo/mbot/mbot_description/scripts/
 	cd "${defined_PATH}"
 	python3 demo_path.py	
 else
