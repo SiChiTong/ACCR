@@ -259,7 +259,7 @@
   <link name="Right_Front_Wheel">
     <inertial>
       <origin  xyz="-0.016839 0.2459 0.041366" rpy="0 0 0" />
-      <mass value="2.752" />
+      <mass value="2" />
       <inertia
         ixx="0"
         ixy="0"
@@ -283,7 +283,7 @@
     </collision>
   </link>
   
-  <joint name="Joint_Wheel_Front_Right" type="continuous">
+  <joint name="Joint_Wheel_Front_Right"  type="continuous">
     <origin xyz="0.22383 -0.2459 0.047662" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="Right_Front_Wheel" />
@@ -294,7 +294,7 @@
   <link name="Right_Back_Wheel">
     <inertial>
       <origin xyz="0.46316 0.246 0.041366" rpy="0 0 0" />
-      <mass value="2.752" />
+      <mass value="2" />
       <inertia
         ixx="0"
         ixy="0"
@@ -318,7 +318,7 @@
     </collision>
   </link>
   
-  <joint name="Joint_Wheel_Back_Right" type="continuous">
+  <joint name="Joint_Wheel_Back_Right"  type="continuous">
     <origin xyz="-0.25617 -0.246 0.047662" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="Right_Back_Wheel" />
@@ -329,7 +329,7 @@
   <link name="Left_Front_Wheel">
     <inertial>
       <origin xyz="-0.016839 -0.2459 0.041366" rpy="0 0 0" />
-      <mass value="2.752" />
+      <mass value="2" />
       <inertia
         ixx="0"
         ixy="0"
@@ -353,7 +353,7 @@
     </collision>
   </link>
   
-  <joint name="Joint_Wheel_Front_Left" type="continuous">
+  <joint name="Joint_Wheel_Front_Left"  type="continuous">
     <origin xyz="0.22383 0.2459 0.047662" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="Left_Front_Wheel" />
@@ -364,7 +364,7 @@
   <link name="Left_Back_Wheel">
     <inertial>
       <origin xyz="0.46316 -0.2459 0.041366" rpy="0 0 0" />
-      <mass value="2.752" />
+      <mass value="2" />
       <inertia
         ixx="0"
         ixy="0"
@@ -388,7 +388,7 @@
     </collision>
   </link>
   
-  <joint name="Joint_Wheel_Back_Left" type="continuous">
+  <joint name="Joint_Wheel_Back_Left"  type="continuous">
     <origin xyz="-0.25617 0.2459 0.047662" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="Left_Back_Wheel" />

@@ -142,24 +142,23 @@
   <gazebo reference="Right_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
         <mu1>0</mu1>
-	<mu2>1</mu2>  
+	      <mu2>0</mu2>  
   </gazebo> 
   <gazebo reference="Right_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
         <mu1>0</mu1>
-	<mu2>1</mu2>  
+	      <mu2>0</mu2>  
   </gazebo> 
   <gazebo reference="Left_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
         <mu1>0</mu1>
-	<mu2>1</mu2>
+	      <mu2>0</mu2>
 	   
   </gazebo>  
   <gazebo reference="Left_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
         <mu1>0</mu1>
-	<mu2>1</mu2> 
-	 
+	      <mu2></mu2> 
   </gazebo>  
     
   <gazebo>
@@ -168,9 +167,9 @@
     <leftJoint>Joint_Wheel_Left</leftJoint>
     <rightJoint>Joint_Wheel_Right</rightJoint>
     <wheelSeparation>0.45</wheelSeparation>
-    <wheelDiameter>0.16</wheelDiameter>
+    <wheelDiameter>0.12</wheelDiameter>
     <wheelAcceleration>2.0</wheelAcceleration>
-    <wheelTorque>7</wheelTorque>
+    <wheelTorque>10</wheelTorque>
     <commandTopic>cmd_vel</commandTopic>
     <odometryTopic>odom</odometryTopic>
     <odometryFrame>odom</odometryFrame>
