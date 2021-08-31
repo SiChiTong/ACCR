@@ -52,29 +52,29 @@ Install necessary dependency packages (some of them may be no longer required):
 As long as the package is under some child directory of src, catkin can detect it automatically. The next step is then to build the system.
 
     $ source /opt/ros/noetic/setup.bash
-    $ cd <yourpath>/UoM_BT_Robot
+    $ cd <yourpath>/ACCR
     $ catkin_make
 
 ## 4. Save the test site to the simulation
 
-    $ cd <yourpath>/UoM_BT_Robot
+    $ cd <yourpath>/ACCR
     $ source devel/setup.bash
     $ roslaunch test_site_gazebo gazebo.launch
     
 Once the Gazebo is running, on your left hand, find and click `<Models>` - `<test_site_gazebo>`. At the bottom, click `<pose>`, change `<x>`,`<y>`,`<z>`,`<pitch>`,`<yaw>` to 0. But keep `<roll>` value as whatever it is. After you complete these steps, save the world to 
 
-    $ <yourpath>/UoM_BT_Robot/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
+    $ <yourpath>/ACCR/src/mbot_gazebo/mbot_simulations/worlds/test_site_gazebo.world
     
 ## 5. Register your Path and shell
     
-    $ cd <yourpath>/UoM_BT_Robot
+    $ cd <yourpath>/ACCR
     $ sudo chmod +x RUN.sh
-    $ cd <yourpath>/UoM_BT_Robot/src/mbot_gazebo/mbot/mbot_description/scripts/
+    $ cd <yourpath>/ACCR/src/mbot_gazebo/mbot/mbot_description/scripts/
     $ sudo chmod +x demo_path.py
     
 ## 6. Test your project
 
-    $ cd <yourpath>/UoM_BT_Robot
+    $ cd <yourpath>/ACCR
     $ ./RUN.sh
 
 
