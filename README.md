@@ -85,15 +85,16 @@ At this beginning level, we still have a lot of works that need to be done. Here
 * Isolate ROS controller from simulations, and allow users to choose to run both (to test in simulation) or the ROS controller only (to test on the robot).
 
 ## *Simulation:*
-* Rebuild the map, and set the corner to the origin, which makes all coordinates in the map be positive numbers.
+* Rebuild the map, and set the corner to the origin, which makes all coordinates in the map be positive numbers. *Solved in v1* :exclamation:
 * Rewrite the robot description files to resolve some issues:
     * Enable the bucket joint and allow it to be lifted up or dropped down in the simulation environment. Currently, it is down to the bottom and potentially caused huge friction.
-    * Modify the robot model, as it has only two wheels in the simulation, which made it has a pitch angle change. This pitch angle change may also cause huge friction when the acceleration changed (especially when slowing down).
+    * Modify the robot model, as it has only two wheels in the simulation, which made it has a pitch angle change. This pitch angle change may also cause huge friction when the acceleration changed (especially when slowing down). :heavy_check_mark:
 * Potentially change or modify the *diff_robot_controller* to make it closer to the algorithms used in our real robot.
 
 ## *ROS controller*
 * Clean up the algorithms used in the current project and remove or mark the irrelevant or unused packages.
 * Create a simple decision layer to allow it to decide when to lift up or drop down the bucket (will add more features later: *e.g.* switch the navigation algorithms between lidar-base and vision-base).
+* Develop a communication protocal to send/receive messages to/from STM32 device.
 * More features will come later.
 
 
