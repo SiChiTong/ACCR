@@ -106,7 +106,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/murphy/Projects/Baotong/ACCR/src/test_site_gazebo/meshes/base_link.STL</uri>
+              <uri>../meshes/base_link.STL</uri>
             </mesh>
           </geometry>
           <max_contacts>10</max_contacts>
@@ -128,7 +128,7 @@
           <geometry>
             <mesh>
               <scale>1 1 1</scale>
-              <uri>/home/murphy/Projects/Baotong/ACCR/src/test_site_gazebo/meshes/base_link.STL</uri>
+              <uri>../meshes/base_link.STL</uri>
             </mesh>
           </geometry>
         </visual>
@@ -139,10 +139,10 @@
       <pose>0 0 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>69 619000000</sim_time>
-      <real_time>69 702008622</real_time>
+      <sim_time>0 0</sim_time>
+      <real_time>0 0</real_time>
       <wall_time>1630373190 511940173</wall_time>
-      <iterations>69619</iterations>
+      <iterations>0</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>

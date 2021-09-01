@@ -12,7 +12,7 @@
         <mu1>10000000</mu1>
 	<mu2>10000000</mu2>
 	<kp>10000000</kp>
-	<kd>1</kd>
+	<kd>100</kd>
 	<max_vel>0.7</max_vel>
  	
   </gazebo>  
@@ -21,7 +21,7 @@
         <mu1>10000000</mu1>
 	<mu2>10000000</mu2>
 	<kp>10000000</kp>
-	<kd>1</kd>
+	<kd>100</kd>
 	<max_vel>0.7</max_vel>
  	
   </gazebo>  
@@ -141,24 +141,24 @@
   
   <gazebo reference="Right_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
-        <mu1>0</mu1>
-	<mu2>0</mu2>  
+        <mu1>0.001</mu1>
+	<mu2>0.001</mu2>  
   </gazebo> 
   <gazebo reference="Right_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
-        <mu1>0</mu1>
-	<mu2>0</mu2>  
+        <mu1>0.001</mu1>
+	<mu2>0.001</mu2>  
   </gazebo> 
   <gazebo reference="Left_Front_Wheel">  
         <material>Gazebo/FlatBlack</material>
-        <mu1>0</mu1>
-	<mu2>0</mu2>
+        <mu1>0.001</mu1>
+	<mu2>0.001</mu2>
 	   
   </gazebo>  
   <gazebo reference="Left_Back_Wheel">  
         <material>Gazebo/FlatBlack</material> 
-        <mu1>0</mu1>
-	<mu2>0</mu2> 
+        <mu1>0.001</mu1>
+	<mu2>0.001</mu2> 
 	 
   </gazebo>  
     
