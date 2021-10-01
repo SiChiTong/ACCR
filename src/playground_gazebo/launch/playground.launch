@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find playground_gazebo)/worlds/playground.world"/>
+  </include>
+
+  <!-- Spawn a robot into Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find ugv_description)/urdf/ugv.urdf -urdf -x -3 -y -2 -z 1 -model ugv" />    
+</launch>
