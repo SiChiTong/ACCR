@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Arguments -->
+  <arg name="scan_topic"     default="rrbot/laser/scan"/>
+  <arg name="initial_pose_x" default="-3.5"/>
+  <arg name="initial_pose_y" default="-2.2"/>
+  <arg name="initial_pose_a" default="0.1"/>
+  
+  <remap from="scan" to="$(arg scan_topic)"/>
+  
+  <!-- Map server -->
+  <arg name="map_file" default="$(find nav_config)/maps/map_peter.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> 
+    
+  <node name="amcl" pkg="amcl" type="amcl" clear_params="true" >
+  	<rosparam file="$(find nav_config)/param/amcl_config.yaml" command="load"/>
+  	<param name="initial_pose_x"            value="$(arg initial_pose_x)"/>
+    <param name="initial_pose_y"            value="$(arg initial_pose_y)"/>
+    <param name="initial_pose_a"            value="$(arg initial_pose_a)"/>	
+  </node>
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" /> 
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <rosparam file="$(find nav_config)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find nav_config)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find nav_config)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_config)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_config)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find nav_config)/param/dwa_local_planner_params.yaml" command="load" />
+  </node>
+
+</launch>
