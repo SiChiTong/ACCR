@@ -8,10 +8,10 @@ project(playground_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscp
+  gazebo_ros
+  roscpp
   rospy
   std_msgs
-  gazebo_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,10 +104,10 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES playground_gazebo
-  CATKIN_DEPENDS roscp rospy std_msgs
-  DEPENDS system_lib gazebo_ros
+#  INCLUDE_DIRS include
+   LIBRARIES playground_gazebo
+   CATKIN_DEPENDS roscpp rospy std_msgs
+   DEPENDS system_lib gazebo_ros
 )
 
 ###########
@@ -187,11 +187,7 @@ include_directories(
 # )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+
 
 #############
 ## Testing ##

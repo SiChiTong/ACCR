@@ -8,7 +8,7 @@
         xyz="0 0 0.2"
         rpy="0 0 0" />
       <mass
-        value="25" />
+        value="5" />
       <inertia
         ixx="0.854166667"
         ixy="0"
@@ -16,7 +16,7 @@
         iyy="1.354166667"
         iyz="0"
         izz="1.54166667" />
-    </inertial>
+      </inertial>
     <visual>
       <geometry>
         <mesh
@@ -25,7 +25,7 @@
     </visual>
     <collision>
       <origin
-        xyz="0 0 0.2"
+        xyz="0 0 0.201"
         rpy="0 0 0" />
       <geometry>
         <box size="0.7 0.5 0.4"/>
@@ -42,7 +42,7 @@
         xyz="0 0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -58,6 +58,16 @@
       <geometry>
         <mesh
           filename="package://ugv_description/models/Left_Front_Wheel.STL" />
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </visual>
     <collision>
@@ -66,6 +76,16 @@
         rpy="-1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </collision>
   </link>
@@ -93,7 +113,7 @@
         xyz="0 -0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -109,6 +129,16 @@
       <geometry>
         <mesh
           filename="package://ugv_description/models/Right_Front_Wheel.STL" />
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </visual>
     <collision>
@@ -117,6 +147,16 @@
         rpy="1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </collision>
   </link>
@@ -144,7 +184,7 @@
         xyz="0 -0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -160,6 +200,16 @@
       <geometry>
         <mesh
           filename="package://ugv_description/models/Right_Front_Wheel.STL" />
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </visual>
     <collision>
@@ -168,6 +218,16 @@
         rpy="1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </collision>
   </link>
@@ -195,7 +255,7 @@
         xyz="0 0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -211,6 +271,16 @@
       <geometry>
         <mesh
           filename="package://ugv_description/models/Left_Front_Wheel.STL" />
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </visual>
     <collision>
@@ -219,6 +289,16 @@
         rpy="1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>10000000</kp>
+              <kd>100</kd>
+              <mu1>0.0</mu1>
+              <mu2>0.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
     </collision>
   </link>
@@ -246,7 +326,7 @@
         xyz="0 0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -265,8 +345,10 @@
         <surface>
           <friction>
             <ode>
-              <mu>1000.0</mu>
-              <mu2>1000.0</mu2>
+              <kp>100000000</kp>
+              <kd>1000</kd>
+              <mu1>1000000.0</mu1>
+              <mu2>0.0000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -278,7 +360,18 @@
         rpy="1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>100000000</kp>
+              <kd>1000</kd>
+              <mu1>1000000.0</mu1>
+              <mu2>0.0000001</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
+      <material>Gazebo/FlatBlack</material>
     </collision>
   </link>
   
@@ -294,6 +387,7 @@
       link="left_wheel" />
     <axis
       xyz="0 1 0" />
+    <dynamics damping="0.7" friction="100.0" />
   </joint>
 
   <!-- right -->
@@ -305,7 +399,7 @@
         xyz="0 -0.06 0"
         rpy="0 0 0" />
       <mass
-        value="5" />
+        value="1" />
       <inertia
         ixx="0.007166667"
         ixy="0"
@@ -324,8 +418,10 @@
         <surface>
           <friction>
             <ode>
-              <mu>1000.0</mu>
-              <mu2>1000.0</mu2>
+              <kp>100000000</kp>
+              <kd>1000</kd>
+              <mu1>1000000.0</mu1>
+              <mu2>0.0000001</mu2>
             </ode>
           </friction>
         </surface>
@@ -337,7 +433,18 @@
         rpy="-1.570796327 0 0" />
       <geometry>
         <cylinder length="0.08" radius="0.065"/>
+        <surface>
+          <friction>
+            <ode>
+              <kp>100000000</kp>
+              <kd>1000</kd>
+              <mu1>1000000.0</mu1>
+              <mu2>0.0000001</mu2>
+            </ode>
+          </friction>
+        </surface>
       </geometry>
+      <material>Gazebo/FlatBlack</material>
     </collision>
   </link>
   
@@ -353,6 +460,7 @@
       link="right_wheel" />
     <axis
       xyz="0 1 0" />
+    <dynamics damping="0.7" friction="100.0" />
   </joint>
 
   <!-- Bucket -->
@@ -364,7 +472,7 @@
         xyz="0.1 -0.211701589881784 0.1"
         rpy="0 0 0" />
       <mass
-        value="15" />
+        value="1" />
       <inertia
         ixx="0.6"
         ixy="0"
@@ -498,10 +606,10 @@
   </gazebo>
 
   <joint
-    name="Joint_Camera"
+    name="joint_camera"
     type="fixed">
     <origin
-      xyz="0.29633 -0.00035214 0.337"
+      xyz="0.29633 0 0.337"
       rpy="0 0 0" />
     <parent
       link="robot_body" />
@@ -520,7 +628,7 @@
         xyz="-2.77555756156289E-17 4.74552056052413E-18 0.0254999999999999"
         rpy="0 0 0" />
       <mass
-        value="4" />
+        value="1" />
       <inertia
         ixx="0.00113189486295744"
         ixy="1.95759134039956E-51"
@@ -537,11 +645,6 @@
         <mesh
           filename="package://ugv_description/models/Lidar.STL" />
       </geometry>
-      <material
-        name="">
-        <color
-          rgba="1 1 1 1" />
-      </material>
     </visual>
     <collision>
       <origin
@@ -556,7 +659,7 @@
 
   <gazebo reference="Lidar_link">
     <sensor type="gpu_ray" name="head_hokuyo_sensor">
-      <pose>0 0 0.1 0 0 0</pose>
+      <pose>0 0 0.05 0 0 0</pose>
       <visualize>true</visualize>
       <update_rate>30</update_rate>
       <ray>
@@ -573,24 +676,24 @@
           <max>30.0</max>
           <resolution>0.01</resolution>
         </range>
+        
+        <!--
         <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
           <stddev>0.01</stddev>
         </noise>
+      -->
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_gpu_laser.so">
         <topicName>/rrbot/laser/scan</topicName>
         <frameName>Lidar_link</frameName>
       </plugin>
-      <plugin name="joint_rotor_plugin" filename="joint_rotor_plugin.cc">
-        <velocity>25</velocity>>
-      </plugin>>
     </sensor>
   </gazebo>
 
   <joint
-    name="Joint_Lidar"
+    name="joint_lidar"
     type="continuous">
     <origin
       xyz="0.21533 0 0.403"
@@ -603,24 +706,72 @@
       xyz="0 0 1" />
   </joint>
 
-  <!-- drive -->
+  <!-- drivers -->
 
   <gazebo>
-    <plugin name = "differential_drive_controller" filename = "libgazebo_ros_diff_drive.so">
-      <updateRate>30</updateRate>
-      <leftJoint>left_wheel_joint</leftJoint>
-      <rightJoint>right_wheel_joint</rightJoint>
-      <wheelSeparation>0.57</wheelSeparation>
-      <wheelDiameter>0.12</wheelDiameter>
-      <wheelAcceleration>0.3</wheelAcceleration>
-      <wheelTorque>50</wheelTorque>
-      <commandTopic>cmd_vel</commandTopic>
-      <odometryTopic>odom</odometryTopic>
-      <odometryFrame>odom</odometryFrame>
-      <robotBaseFrame>robot_body</robotBaseFrame>
-      <odometrySource>1</odometrySource>
-    </plugin>>
-  </gazebo>>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/UGV_Unimelb</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <transmission name="left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_left_wheel">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>7</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_right_wheel">
+      <hardwareInterface>VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>7</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="lidar_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Joint_Bucket_left">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_bucket_trans">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- Lidar driver -->
+
+  <transmission name="lidar_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_lidar">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_lidar_trans">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- Bucket driver -->
+
+  <transmission name="lidar_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Joint_Bucket_left">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_bucket_trans">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
   <!-- IMU sensor -->
 

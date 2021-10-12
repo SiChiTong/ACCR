@@ -1,9 +1,34 @@
 <?xml version="1.0" ?>
 <launch>
+  <remap from="UGV_Unimelb/wheel_diff_drive/cmd_vel" to="cmd_vel" />
+  <remap from="UGV_Unimelb/wheel_diff_drive/odom" to="odom" />
+  <remap from="UGV_Unimelb/joint_states" to="joint_states" />
+
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find playground_gazebo)/worlds/playground.world"/>
   </include>
+  
+  <arg name="kb_ctrl" default="false"/>
 
   <!-- Spawn a robot into Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find ugv_description)/urdf/ugv.urdf -urdf -x -3 -y -2 -z 1 -model ugv" />    
+  <param name="robot_description" command="$(find xacro)/xacro '$(find ugv_description)/urdf/ugv.xacro'"/>
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model UGV_Unimelb -param robot_description -x -3 -y -2 -z 1" />  
+
+  <!-- loads the controllers -->
+  <rosparam file="$(find ugv_description)/config/config.yaml" command="load" />
+  <node name="spawn_controller_lidar" pkg="controller_manager" type="spawner" ns="/UGV_Unimelb" 
+      args="joint_bucket_controller wheel_diff_drive joint_state_controller --shutdown-timeout 3" > 
+  </node>
+
+  <!--<node name="joint_state_publisehr" pkg="joint_state_pulisher" type="joint_state_publisher"/>-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen" >
+    
+  </node> 
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find playground_gazebo)/launch/config.rviz"/>
+  
+  <!-- Keyboard control launch -->
+  <node name="keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" if="$(arg kb_ctrl)">
+    <!--<remap from="cmd_vel" to="UGV_Unimelb/wheel_diff_drive/cmd_vel" />-->
+  </node>
 </launch>

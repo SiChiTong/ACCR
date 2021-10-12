@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(UGV_description)
+project(ugv_description)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,14 +7,18 @@ project(UGV_description)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
-find_package(gazebo REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  rospy
+  std_msgs
+  gazebo_ros
+)
+find_package(gazebo REQUIRED COMPONENTS
+  
+)
 include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
-
-add_library(joint_rotor_plugin SHARED joint_rotor_plugin.cc)
-target_link_libraries(joint_rotor_plugin ${GAZEBO_LIBRARIES})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
