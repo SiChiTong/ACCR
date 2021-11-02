@@ -69,11 +69,12 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	//CRC
 	s_buffer[14] = s_buffer[2]^s_buffer[3]^s_buffer[4]^s_buffer[5]^s_buffer[6]^s_buffer[7]^
 					s_buffer[8]^s_buffer[9]^s_buffer[10]^s_buffer[11]^s_buffer[12]^s_buffer[13];
-	/*
-	for(i=0;i<15;i++){
+
+
+	for(int i=0;i<15;i++){
 		ROS_INFO("0x%02x",s_buffer[i]);
 	}
-	*/
+	
 	ser.write(s_buffer,sBUFFERSIZE);
 	
 }
@@ -114,7 +115,7 @@ int main (int argc, char** argv){
     ros::NodeHandle nh;
 
 	//订阅/turtle1/cmd_vel话题用于测试 $ rosrun turtlesim turtle_teleop_key
-	ros::Subscriber write_sub = nh.subscribe("/turtle1/cmd_vel",1000,cmd_vel_callback);
+	ros::Subscriber write_sub = nh.subscribe("/cmd_vel",1000,cmd_vel_callback);
 	//发布里程计话题 odom
 	ros::Publisher read_pub = nh.advertise<nav_msgs::Odometry>("odom",1000);
 
