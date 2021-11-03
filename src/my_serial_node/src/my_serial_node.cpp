@@ -12,8 +12,9 @@
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
+#include <math.h>
 
-#define	sBUFFERSIZE	15//send buffer size 串口发送缓存长度
+#define	sBUFFERSIZE	16//send buffer size 串口发送缓存长度
 #define	rBUFFERSIZE	27//receive buffer size 串口接收缓存长度
 unsigned char s_buffer[sBUFFERSIZE];//发送缓存
 unsigned char r_buffer[rBUFFERSIZE];//接收缓存
@@ -32,7 +33,7 @@ unsigned char r_buffer[rBUFFERSIZE];//接收缓存
 //联合体，用于浮点数与16进制的快速转换
 typedef union{
 	unsigned char cvalue[4];
-	float fvalue;
+	int fvalue;
 }float_union;
 
 serial::Serial ser;
@@ -42,15 +43,46 @@ serial::Serial ser;
  * ********************************************************/
 void data_pack(const geometry_msgs::Twist& cmd_vel){
 	//unsigned char i;
-	float_union Vx,Vy,Ang_v;
-	Vx.fvalue = cmd_vel.linear.x;
-	Vy.fvalue = cmd_vel.linear.y;
-	Ang_v.fvalue = cmd_vel.angular.z;
+	//float_union Vx,Vy,Ang_v;
+	//Vx.fvalue = cmd_vel.linear.x;
+	//Ang_v.fvalue = cmd_vel.angular.z;
+	int16_t   vel_x = static_cast<int16_t>(cmd_vel.linear.x*1000);
+	int16_t   ang_v = static_cast<int16_t>(cmd_vel.angular.z*1000);
+	//int16_t vel_x = (int16_t)round(cmd_vel.linear.x*1000);
+	//int16_t ang_v = (int16_t)round(cmd_vel.angular.z*1000);
+
+	ROS_INFO("linear vel: x-[%d]",vel_x);
+	ROS_INFO("angular vel: [%d]",ang_v);
 	
 	memset(s_buffer,0,sizeof(s_buffer));
 	//数据打包
-	s_buffer[0] = 0xff;
-	s_buffer[1] = 0xff;
+	//mode
+	s_buffer[0] = 0x00;
+	//linear ref speed [mm/s]
+	s_buffer[1] = vel_x>>8;
+	s_buffer[2] = vel_x;
+	//anguar speed [mrad/s]
+	s_buffer[3] = ang_v>>8;
+	s_buffer[4] = ang_v;
+	//bucket angle [mrad]
+	s_buffer[5] = 0x00;
+	s_buffer[6] = 0x00;
+	//bucket speed [mrad/s]
+	s_buffer[7] = 0x00;
+	s_buffer[8] = 0x00;
+	//aux func
+	s_buffer[9] = 0x00;
+	//reserved
+	s_buffer[10] = 0x00;
+	s_buffer[11] = 0x00;
+	s_buffer[12] = 0x00;
+	s_buffer[13] = 0x00;
+	//crc
+	s_buffer[14] = 0x00;
+	s_buffer[15] = 0x00;
+
+
+/*
 	//Vx
 	s_buffer[2] = Vx.cvalue[0];
 	s_buffer[3] = Vx.cvalue[1];
@@ -70,10 +102,11 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	s_buffer[14] = s_buffer[2]^s_buffer[3]^s_buffer[4]^s_buffer[5]^s_buffer[6]^s_buffer[7]^
 					s_buffer[8]^s_buffer[9]^s_buffer[10]^s_buffer[11]^s_buffer[12]^s_buffer[13];
 
-
+*/
 	for(int i=0;i<15;i++){
 		ROS_INFO("0x%02x",s_buffer[i]);
 	}
+
 	
 	ser.write(s_buffer,sBUFFERSIZE);
 	
