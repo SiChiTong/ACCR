@@ -9,6 +9,7 @@
 #include <serial/serial.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Empty.h>
+#include <std_msgs/Int16.h>
 #include <geometry_msgs/Twist.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
@@ -41,18 +42,21 @@ serial::Serial ser;
 /**********************************************************
  * 数据打包，将获取的cmd_vel信息打包并通过串口发送
  * ********************************************************/
-void data_pack(const geometry_msgs::Twist& cmd_vel){
+/*
+void data_pack(const geometry_msgs::Twist& cmd_vel, const std_msgs::Int16& bucket_pose){
 	//unsigned char i;
 	//float_union Vx,Vy,Ang_v;
 	//Vx.fvalue = cmd_vel.linear.x;
 	//Ang_v.fvalue = cmd_vel.angular.z;
 	int16_t   vel_x = static_cast<int16_t>(cmd_vel.linear.x*1000);
 	int16_t   ang_v = static_cast<int16_t>(cmd_vel.angular.z*1000);
+	//int16_t   bucket_angle = static_cast<int16_t>(bucket_joint_angle.data);
 	//int16_t vel_x = (int16_t)round(cmd_vel.linear.x*1000);
 	//int16_t ang_v = (int16_t)round(cmd_vel.angular.z*1000);
 
 	ROS_INFO("linear vel: x-[%d]",vel_x);
 	ROS_INFO("angular vel: [%d]",ang_v);
+	//ROS_INFO("bucket vel: [%d]",bucket_angle);
 	
 	memset(s_buffer,0,sizeof(s_buffer));
 	//数据打包
@@ -65,8 +69,8 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	s_buffer[3] = ang_v>>8;
 	s_buffer[4] = ang_v;
 	//bucket angle [mrad]
-	s_buffer[5] = 0x00;
-	s_buffer[6] = 0x00;
+	//s_buffer[5] = bucket_angle>>8;
+	//s_buffer[6] = bucket_angle;
 	//bucket speed [mrad/s]
 	s_buffer[7] = 0x00;
 	s_buffer[8] = 0x00;
@@ -82,7 +86,7 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	s_buffer[15] = 0x00;
 
 
-/*
+
 	//Vx
 	s_buffer[2] = Vx.cvalue[0];
 	s_buffer[3] = Vx.cvalue[1];
@@ -102,7 +106,7 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	s_buffer[14] = s_buffer[2]^s_buffer[3]^s_buffer[4]^s_buffer[5]^s_buffer[6]^s_buffer[7]^
 					s_buffer[8]^s_buffer[9]^s_buffer[10]^s_buffer[11]^s_buffer[12]^s_buffer[13];
 
-*/
+
 	for(int i=0;i<15;i++){
 		ROS_INFO("0x%02x",s_buffer[i]);
 	}
@@ -110,7 +114,10 @@ void data_pack(const geometry_msgs::Twist& cmd_vel){
 	
 	ser.write(s_buffer,sBUFFERSIZE);
 	
-}
+}*/
+
+
+
 //接收数据分析与校验
 unsigned char data_analysis(unsigned char *buffer)
 {
@@ -140,15 +147,65 @@ unsigned char data_analysis(unsigned char *buffer)
 void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
 	ROS_INFO("I heard linear velocity: x-[%f],y-[%f],",cmd_vel.linear.x,cmd_vel.linear.y);
 	ROS_INFO("I heard angular velocity: [%f]",cmd_vel.angular.z);
-	std::cout << "Twist Received" << std::endl;	
-	data_pack(cmd_vel);
+	std::cout << "Twist Received" << std::endl;
+	int16_t   vel_x = static_cast<int16_t>(cmd_vel.linear.x*1000);
+	int16_t   ang_v = static_cast<int16_t>(cmd_vel.angular.z*1000);
+	ROS_INFO("linear vel: x-[%d]",vel_x);
+	ROS_INFO("angular vel: [%d]",ang_v);
+	//linear ref speed [mm/s]
+	s_buffer[1] = vel_x>>8;
+	s_buffer[2] = vel_x;
+	//anguar speed [mrad/s]
+	s_buffer[3] = ang_v>>8;
+	s_buffer[4] = ang_v;
 }
+
+void bucket_pose_callback(const std_msgs::Int16& bucket_pose){
+	ROS_INFO("I heard bucket: x-[%d],",bucket_pose.data);
+	//bucket angle [mrad]
+	s_buffer[5] = bucket_pose.data>>8;
+	s_buffer[6] = bucket_pose.data;
+	//bucket speed [mrad/s]
+	s_buffer[7] = 0x00;
+	s_buffer[8] = 0x00;
+	
+}
+
 int main (int argc, char** argv){
     ros::init(argc, argv, "my_serial_node");
     ros::NodeHandle nh;
-
+    memset(s_buffer,0,sizeof(s_buffer));
+	//数据打包
+	//mode
+	s_buffer[0] = 0x00;
+    
 	//订阅/turtle1/cmd_vel话题用于测试 $ rosrun turtlesim turtle_teleop_key
 	ros::Subscriber write_sub = nh.subscribe("/cmd_vel",1000,cmd_vel_callback);
+	ros::Subscriber write_sub1 = nh.subscribe("/bucket_pose",1000,bucket_pose_callback);
+	
+	//data_pack(cmd_vel,bucket_pose);
+	
+	//aux func
+	s_buffer[9] = 0x00;
+	//reserved
+	s_buffer[10] = 0x00;
+	s_buffer[11] = 0x00;
+	s_buffer[12] = 0x00;
+	s_buffer[13] = 0x00;
+	//crc
+	s_buffer[14] = 0x00;
+	s_buffer[15] = 0x00;
+	
+	
+	for(int i=0;i<15;i++){
+		ROS_INFO("0x%02x",s_buffer[i]);
+	}
+
+	
+	ser.write(s_buffer,sBUFFERSIZE);
+	
+	
+	
 	//发布里程计话题 odom
 	ros::Publisher read_pub = nh.advertise<nav_msgs::Odometry>("odom",1000);
 

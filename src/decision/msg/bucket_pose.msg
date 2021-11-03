@@ -1,0 +1,1 @@
+std_msgs/Int16 bucket_joint_angle
