@@ -160,11 +160,11 @@ void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
 	s_buffer[4] = ang_v;
 }
 
-void bucket_pose_callback(const std_msgs::Int16& bucket_pose){
-	ROS_INFO("I heard bucket: x-[%d],",bucket_pose.data);
+void bucket_msg_callback(const std_msgs::Int16& bucket_msg){
+	ROS_INFO("I heard bucket: x-[%d],",bucket_msg.data);
 	//bucket angle [mrad]
-	s_buffer[5] = bucket_pose.data>>8;
-	s_buffer[6] = bucket_pose.data;
+	s_buffer[5] = bucket_msg.data>>8;
+	s_buffer[6] = bucket_msg.data;
 	//bucket speed [mrad/s]
 	s_buffer[7] = 0x00;
 	s_buffer[8] = 0x00;
@@ -181,7 +181,7 @@ int main (int argc, char** argv){
     
 	//订阅/turtle1/cmd_vel话题用于测试 $ rosrun turtlesim turtle_teleop_key
 	ros::Subscriber write_sub = nh.subscribe("/cmd_vel",1000,cmd_vel_callback);
-	ros::Subscriber write_sub1 = nh.subscribe("/bucket_pose",1000,bucket_pose_callback);
+	ros::Subscriber write_sub1 = nh.subscribe("/bucket_msg",1000,bucket_msg_callback);
 	
 	//data_pack(cmd_vel,bucket_pose);
 	
