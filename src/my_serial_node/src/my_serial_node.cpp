@@ -158,6 +158,13 @@ void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
 	//anguar speed [mrad/s]
 	s_buffer[3] = ang_v>>8;
 	s_buffer[4] = ang_v;
+	
+	for(int i=0;i<15;i++){
+		ROS_INFO("0x%02x",s_buffer[i]);
+	}
+
+	
+	ser.write(s_buffer,sBUFFERSIZE);
 }
 
 void bucket_msg_callback(const std_msgs::Int16& bucket_msg){
@@ -174,36 +181,7 @@ void bucket_msg_callback(const std_msgs::Int16& bucket_msg){
 int main (int argc, char** argv){
     ros::init(argc, argv, "my_serial_node");
     ros::NodeHandle nh;
-    memset(s_buffer,0,sizeof(s_buffer));
-	//数据打包
-	//mode
-	s_buffer[0] = 0x00;
     
-	//订阅/turtle1/cmd_vel话题用于测试 $ rosrun turtlesim turtle_teleop_key
-	ros::Subscriber write_sub = nh.subscribe("/cmd_vel",1000,cmd_vel_callback);
-	ros::Subscriber write_sub1 = nh.subscribe("/bucket_msg",1000,bucket_msg_callback);
-	
-	//data_pack(cmd_vel,bucket_pose);
-	
-	//aux func
-	s_buffer[9] = 0x00;
-	//reserved
-	s_buffer[10] = 0x00;
-	s_buffer[11] = 0x00;
-	s_buffer[12] = 0x00;
-	s_buffer[13] = 0x00;
-	//crc
-	s_buffer[14] = 0x00;
-	s_buffer[15] = 0x00;
-	
-	
-	for(int i=0;i<15;i++){
-		ROS_INFO("0x%02x",s_buffer[i]);
-	}
-
-	
-	ser.write(s_buffer,sBUFFERSIZE);
-	
 	
 	
 	//发布里程计话题 odom
@@ -228,6 +206,36 @@ int main (int argc, char** argv){
     }else{
         return -1;
     }
+    
+    
+    
+    memset(s_buffer,0,sizeof(s_buffer));
+	//数据打包
+	//mode
+	s_buffer[0] = 0x00;
+    
+	
+	//data_pack(cmd_vel,bucket_pose);
+	
+	//aux func
+	s_buffer[9] = 0x00;
+	//reserved
+	s_buffer[10] = 0x00;
+	s_buffer[11] = 0x00;
+	s_buffer[12] = 0x00;
+	s_buffer[13] = 0x00;
+	//crc
+	s_buffer[14] = 0x00;
+	s_buffer[15] = 0x00;
+	
+	ros::Subscriber write_sub1 = nh.subscribe("/bucket_msg",1000,bucket_msg_callback);
+	//订阅/turtle1/cmd_vel话题用于测试 $ rosrun turtlesim turtle_teleop_key
+	ros::Subscriber write_sub = nh.subscribe("/cmd_vel",1000,cmd_vel_callback);
+	
+	
+	
+	
+	
 	//定义tf 对象
 	static tf::TransformBroadcaster odom_broadcaster;
 	//定义tf发布时需要的类型消息
