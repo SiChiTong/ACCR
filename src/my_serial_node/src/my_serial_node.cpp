@@ -11,7 +11,6 @@
 #include <std_msgs/Empty.h>
 #include <std_msgs/Int16.h>
 #include <geometry_msgs/Twist.h>
-#include <decision/bucket_pose.h>
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
 #include <math.h>
@@ -168,7 +167,7 @@ void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
 	ser.write(s_buffer,sBUFFERSIZE);
 }
 
-void bucket_msg_callback(const decision::bucket_pose& bucket_msg){
+void bucket_msg_callback(const std_msgs::Int16& bucket_msg){
 	ROS_INFO("I heard bucket: x-[%d],",bucket_msg.data);
 	//bucket angle [mrad]
 	s_buffer[5] = bucket_msg.data>>8;

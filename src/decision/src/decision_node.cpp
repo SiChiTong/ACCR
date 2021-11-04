@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     decision::bucket_pose msg;
     
 
-    msg.bucket_joint_angle.data = Empty;
+    msg.bucket_joint_angle.data = 30;
     
     pub.publish(msg);
     loop_rate.sleep();
