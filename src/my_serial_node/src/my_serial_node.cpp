@@ -11,6 +11,7 @@
 #include <std_msgs/Empty.h>
 #include <std_msgs/Int16.h>
 #include <geometry_msgs/Twist.h>
+#include "decision/bucket_pose.h"
 #include <nav_msgs/Odometry.h>
 #include <tf/transform_broadcaster.h>
 #include <math.h>
@@ -145,13 +146,13 @@ unsigned char data_analysis(unsigned char *buffer)
 
 //订阅turtle1/cmd_vel话题的回调函数，用于显示速度以及角速度
 void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
-	ROS_INFO("I heard linear velocity: x-[%f],y-[%f],",cmd_vel.linear.x,cmd_vel.linear.y);
-	ROS_INFO("I heard angular velocity: [%f]",cmd_vel.angular.z);
+	//ROS_INFO("I heard linear velocity: x-[%f],y-[%f],",cmd_vel.linear.x,cmd_vel.linear.y);
+	//ROS_INFO("I heard angular velocity: [%f]",cmd_vel.angular.z);
 	std::cout << "Twist Received" << std::endl;
 	int16_t   vel_x = static_cast<int16_t>(cmd_vel.linear.x*1000);
 	int16_t   ang_v = static_cast<int16_t>(cmd_vel.angular.z*1000);
-	ROS_INFO("linear vel: x-[%d]",vel_x);
-	ROS_INFO("angular vel: [%d]",ang_v);
+	//ROS_INFO("linear vel: x-[%d]",vel_x);
+	//ROS_INFO("angular vel: [%d]",ang_v);
 	//linear ref speed [mm/s]
 	s_buffer[1] = vel_x>>8;
 	s_buffer[2] = vel_x;
@@ -167,14 +168,15 @@ void cmd_vel_callback(const geometry_msgs::Twist& cmd_vel){
 	ser.write(s_buffer,sBUFFERSIZE);
 }
 
-void bucket_msg_callback(const std_msgs::Int16& bucket_msg){
-	ROS_INFO("I heard bucket: x-[%d],",bucket_msg.data);
+void bucket_msg_callback(const decision::bucket_pose& bucket_msg){
+	//int16_t   bucket_joint = bucket_msg.bucket_joint_angle.data;
+	//ROS_INFO("I heard bucket: x-[%d],",bucket_msg.bucket_joint_angle.data);
 	//bucket angle [mrad]
-	s_buffer[5] = bucket_msg.data>>8;
-	s_buffer[6] = bucket_msg.data;
+	s_buffer[5] = bucket_msg.bucket_joint_angle.data>>8;
+	s_buffer[6] = bucket_msg.bucket_joint_angle.data;
 	//bucket speed [mrad/s]
-	s_buffer[7] = 0x00;
-	s_buffer[8] = 0x00;
+	s_buffer[7] = bucket_msg.bucket_joint_speed.data>>8;
+	s_buffer[8] = bucket_msg.bucket_joint_speed.data;
 	
 }
 

@@ -7,12 +7,14 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf
   nav_msgs
+  decision
 )
 
 catkin_package(
   CATKIN_DEPENDS
     serial
     std_msgs
+    decision
 )
 
 include_directories(
