@@ -27,9 +27,24 @@ int main(int argc, char **argv)
 
     msg.bucket_joint_angle.data = BUCKET_EMPTY;
     msg.bucket_joint_speed.data = BUCKET_SPEED;
+    pub.publish(msg);
+    ros::Duration(5).sleep();
+    
+
+    msg.bucket_joint_angle.data = BUCKET_COLLECTING;
+    msg.bucket_joint_speed.data = BUCKET_SPEED;
+    pub.publish(msg);
+    ros::Duration(5).sleep();
+
+    msg.bucket_joint_angle.data = BUCKET_LIFTING;
+    msg.bucket_joint_speed.data = BUCKET_SPEED;
+    pub.publish(msg);
+    ros::Duration(5).sleep();
+
+
     
     pub.publish(msg);
-    loop_rate.sleep();
+    //loop_rate.sleep();
 
   }
 
