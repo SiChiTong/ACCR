@@ -1,6 +1,11 @@
 #include "ros/ros.h"
 #include "decision/bucket_pose.h"
 
+// define the bucket states in milli radian
+#define Empty 785 // 45 degree
+#define Collecting 524 // 30 degree
+#define Lifting 0 // 0 degree
+
 
 
 
@@ -18,8 +23,8 @@ int main(int argc, char **argv)
   {
     decision::bucket_pose msg;
     
-    // 30 -> down, 0 -> up
-    msg.bucket_joint_angle.data = 30;
+
+    msg.bucket_joint_angle.data = Empty;
     
     pub.publish(msg);
     loop_rate.sleep();
