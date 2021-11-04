@@ -2,7 +2,7 @@
 #include "decision/bucket_pose.h"
 
 // define the bucket states in milli radian
-#define BUCKET_EMPTY 785 // 45 degree
+#define BUCKET_EMPTY 1047 // 60 degree
 #define BUCKET_COLLECTING 524 // 30 degree
 #define BUCKET_LIFTING   0 // 0 degree
 #define BUCKET_SPEED 768 // 44 degree/s
