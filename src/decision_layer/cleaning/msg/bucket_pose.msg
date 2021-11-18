@@ -1,0 +1,2 @@
+std_msgs/Int16 bucket_joint_angle
+std_msgs/Int16 bucket_joint_speed
