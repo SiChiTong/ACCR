@@ -111,7 +111,7 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES cleaning
-  CATKIN_DEPENDS actionlib decision_making geometry_msgs message_generation move_base_msgs nav_msgs roscpp rospy std_msgs
+  CATKIN_DEPENDS actionlib decision_making geometry_msgs message_runtime move_base_msgs nav_msgs roscpp rospy std_msgs
   DEPENDS system_lib
 )
 
@@ -134,7 +134,7 @@ add_library(cleaning_lib
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(cleaning_lib ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
