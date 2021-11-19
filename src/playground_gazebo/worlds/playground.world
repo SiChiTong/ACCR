@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="playground">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <model name="test_site">
+      <static>true</static>
+      <link name="test_site_link">
+        <pose>0 0 0.45 -1.570796327 0 0</pose>
+        <collision name="site_collision">
+          <geometry>
+            <mesh>
+              <uri>file://test_site_model.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="site_visual">
+          <geometry>
+            <mesh>
+              <uri>file://test_site_model.STL</uri>
+              <scale>1 1 1</scale>
+            </mesh>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

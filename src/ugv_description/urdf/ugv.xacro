@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="UGV_Unimelb" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="mass" value="5" />
+  <xacro:include filename="$(find ugv_description)/urdf/ugv_wheel.xacro" />
+  <link
+    name="robot_body">
+    <inertial>
+      <origin
+        xyz="0 0 0.2"
+        rpy="0 0 0" />
+      <mass
+        value="${mass}" />
+      <inertia
+        ixx="0.854166667"
+        ixy="0"
+        ixz="0"
+        iyy="1.354166667"
+        iyz="0"
+        izz="1.54166667" />
+      </inertial>
+    <visual>
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/base_link.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0.201"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.7 0.5 0.4"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <xacro:UGV_Unimelb_wheel wheel_prefix="front_left" >
+    <origin xyz="0 0.06 0" rpy="0 0 0" />
+    <origin xyz="0 0.01 0" rpy="0 0 0" />
+    <origin xyz="0 0.06 0" rpy="-1.570796327 0 0" />
+    <origin xyz="0.22316 0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+
+  <xacro:UGV_Unimelb_wheel wheel_prefix="front_right" >
+    <origin xyz="0 -0.06 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.01 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.06 0" rpy="1.570796327 0 3.1415926525" />
+    <origin xyz="0.22316 -0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+
+  <xacro:UGV_Unimelb_wheel wheel_prefix="back_left" >
+    <origin xyz="0 0.06 0" rpy="0 0 0" />
+    <origin xyz="0 0.01 0" rpy="0 0 0" />
+    <origin xyz="0 0.06 0" rpy="1.570796327 0 0" />
+    <origin xyz="-0.256 0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+
+  <xacro:UGV_Unimelb_wheel wheel_prefix="back_right" >
+    <origin xyz="0 -0.06 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.01 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.06 0" rpy="1.570796327 0 3.1415926525" />
+    <origin xyz="-0.256 -0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+  
+  <xacro:UGV_Unimelb_wheel wheel_prefix="left" >
+    <origin xyz="0 0.06 0" rpy="0 0 0" />
+    <origin xyz="0 0.01 0" rpy="0 0 0" />
+    <origin xyz="0 0.06 0" rpy="1.570796327 0 0" />
+    <origin xyz="-0.016169 0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+
+  <xacro:UGV_Unimelb_wheel wheel_prefix="right" >
+    <origin xyz="0 -0.06 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.01 0" rpy="0 0 3.1415926525" />
+    <origin xyz="0 -0.06 0" rpy="-1.570796327 0 3.1415926525" />
+    <origin xyz="-0.016169 -0.235 0.047662" rpy="0 0 0" />
+  </xacro:UGV_Unimelb_wheel>
+
+  <!-- Bucket -->
+
+  <link
+    name="Bucket">
+    <inertial>
+      <origin
+        xyz="0.1 -0.211701589881784 0.1"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.6"
+        ixy="0"
+        ixz="0"
+        iyy="0.2"
+        iyz="0"
+        izz="0.6" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Bucket.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Bucket.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="Joint_Bucket_left"
+    type="revolute">
+    <origin
+      xyz="0.35883 0.2117 0.047662"
+      rpy="0 0 0" />
+    <parent
+      link="robot_body" />
+    <child
+      link="Bucket" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0.05"
+      upper="0.1"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+  <!-- Camera -->
+
+  <link
+    name="Camera_link">
+    <inertial>
+      <origin
+        xyz="-0.0893390605039384 0.000350551617509749 -0.247972031002889"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.01"
+        ixy="0"
+        ixz="0"
+        iyy="0.01"
+        iyz="0"
+        izz="0.01" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Camera.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Camera.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="Camera_link">
+    <sensor type="camera" name="front_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="front_eye">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>0.0</updateRate>
+        <cameraName>rrbot/camera1</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_link</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint
+    name="joint_camera"
+    type="fixed">
+    <origin
+      xyz="0.29633 0 0.337"
+      rpy="0 0 0" />
+    <parent
+      link="robot_body" />
+    <child
+      link="Camera_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <!-- Lidar -->
+
+  <link
+    name="Lidar_link">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 4.74552056052413E-18 0.0254999999999999"
+        rpy="0 0 0" />
+      <mass
+        value="1" />
+      <inertia
+        ixx="0.00113189486295744"
+        ixy="1.95759134039956E-51"
+        ixz="-2.7081123881694E-36"
+        iyy="0.00113189486295744"
+        iyz="2.56494604465062E-19"
+        izz="0.00192345581012362" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Lidar.STL" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ugv_description/models/Lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="Lidar_link">
+    <sensor type="ray" name="head_hokuyo_sensor">
+      <pose>0 0 0.05 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>30</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-0.5235987756</min_angle>
+            <max_angle>0.5235987756</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>30.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        
+        <!--
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      -->
+      </ray>
+      <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
+        <topicName>/rrbot/laser/scan</topicName>
+        <frameName>Lidar_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <joint
+    name="joint_lidar"
+    type="fixed">
+    <origin
+      xyz="0.21533 0 0.403"
+      rpy="0 0 0" />
+    <parent
+      link="robot_body" />
+    <child
+      link="Lidar_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <!-- drivers -->
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/UGV_Unimelb</robotNamespace>
+    </plugin>
+  </gazebo>
+
+  <!-- Lidar driver 
+
+  <transmission name="lidar_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_lidar">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_lidar_trans">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>-->
+
+  <!-- Bucket driver -->
+
+  <transmission name="bucket_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="Joint_Bucket_left">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_bucket_trans">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <!-- IMU sensor -->
+
+  <gazebo reference="robot_body">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <topic>__default_topic__</topic>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>imu</topicName>
+        <bodyName>robot_body</bodyName>
+        <updateRateHZ>30.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>robot_body</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+
+</robot>
