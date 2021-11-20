@@ -12,14 +12,14 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>nav_msgs</build_depend>
-  <build_depend>cleaning</build_depend>
+  <build_depend>decision</build_depend>
   <build_depend>tf</build_depend>
   <build_depend>serial</build_depend>
   <build_depend>std_msgs</build_depend>
   <run_depend>serial</run_depend>
   <run_depend>std_msgs</run_depend>
   <run_depend>nav_msgs</run_depend>
-  <run_depend>cleaning</run_depend>
+  <run_depend>decision</run_depend>
   <run_depend>tf</run_depend>
 
 </package>
