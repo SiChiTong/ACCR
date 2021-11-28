@@ -9,7 +9,7 @@ using namespace decision_making;
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-goal_points_t dumpPose;
+// goal_points_t dumpPose;
 // goal_points_t default_dumpPose;
 move_base_msgs::MoveBaseGoal goal_dump;
 

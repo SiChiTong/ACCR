@@ -15,7 +15,7 @@ FSM(Retrieving)
     {
         FSM_STATE(Stop)
         {
-            FSM_CALL_TASK(returnDock_begin)
+            FSM_CALL_TASK(retrieve_begin)
             FSM_TRANSITIONS
             {
                 FSM_ON_EVENT("/dump", FSM_NEXT(Moving))
@@ -23,7 +23,7 @@ FSM(Retrieving)
         }
         FSM_STATE(Moving)
         {
-            FSM_CALL_TASK(moveToDock)
+            FSM_CALL_TASK(moveToDump)
             FSM_TRANSITIONS
             {
                 FSM_ON_EVENT("/hold", FSM_NEXT(Stop))
@@ -38,9 +38,11 @@ TaskResult retrieve_begin(std::string, const FSMCallContext& c, EventQueue& e)
     ROS_INFO("FSM task: retrieve_begin");
     goal_dump.target_pose.header.stamp = ros::Time::now();
     goal_dump.target_pose.header.frame_id = "map";
-    goal_dump.target_pose.pose.position.x = dumpPose.x;
-    goal_dump.target_pose.pose.position.y = dumpPose.y;
-    goal_dump.target_pose.pose.orientation.w = dumpPose.w;
+    goal_dump.target_pose.pose.position.x = goal_point.x;
+    goal_dump.target_pose.pose.position.y = goal_point.y;
+    goal_dump.target_pose.pose.orientation.w = goal_point.w;
+
+    e.riseEvent("/dump");
     return TaskResult::SUCCESS();
 }
 
@@ -51,15 +53,14 @@ TaskResult moveToDump(std::string, const FSMCallContext& c, EventQueue& e)
     mbcDump->sendGoal(goal_dump);
     ROS_INFO("Dump pose sent");
 
-    mbcDump->waitForResult(ros::Duration(200.0));
+    mbcDump->waitForResult(ros::Duration(TIMEOUT));
     if(mbcDump->getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-        e.riseEvent("/hold"); // Higher level conditions take care of transition in top layer FSM.
-        if(workMode == RETRIEVE) workMode = CLEAN;
+        if(workMode == RETURNDOCK1) e.riseEvent("/ReturnDock");
+        else e.riseEvent("/Clean");
     else
     {
-        // Choose one of these two condition/event, whichever works
-        e.riseEvent("/hold"); // transit to Stop state in THIS FSM
-        workMode = MALFUNCTION; // transit to top layer state Malfunction
+        // Do not need to return to default state manually 
+        e.riseEvent(MALFUNCTION);
     }
     return TaskResult::SUCCESS();
 }

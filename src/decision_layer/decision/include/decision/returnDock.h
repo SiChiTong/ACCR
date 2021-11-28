@@ -9,9 +9,10 @@ using namespace decision_making;
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-goal_points_t dockPose;
-goal_points_t default_docePose;
+// goal_points_t dockPose;
+// goal_points_t default_docePose;
 move_base_msgs::MoveBaseGoal goal_dock;
+volatile bool charging = true; // charging status sent from low level
 
 MoveBaseClient* mbcDock; 
 
